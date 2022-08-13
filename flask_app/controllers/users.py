@@ -4,7 +4,11 @@ from flask_app.models.user import User
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'user_id' in session:
+        print('User is already logged in, displaying dashboard')
+        return redirect('/dashboard')
+    else:
+        return render_template('index.html')
 
 
 @app.route('/register', methods=['POST'])
@@ -39,6 +43,12 @@ def login():
     session['user_id'] = user_in_db.id
     session['first_name'] = user_in_db.first_name
     return redirect('/dashboard')
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 
 @app.route('/dashboard')

@@ -22,13 +22,14 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/users"><h1>Whatcha Reading?</h1></a>
+        <a class="navbar-brand" href="/dashboard"><h1>Whatcha Reading?</h1></a>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/books">Books</a>
+            {% if session.user_id %}
+            <a class="nav-link" href="/logout">Logout</a>
+            {% else %}
+            <a class="nav-link" href="/">Login</a>
+            {% endif %}
           </li>
         </ul>
       </div>
