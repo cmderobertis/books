@@ -97,10 +97,10 @@ class User:
             flash('Name must be at least 2 characters', 'last_name')
         if not form['last_name'].isalpha():
             is_valid = False
-            flash('Only letters are allowed', 'last_name')
+            flash('Only letters are allowed.', 'last_name')
         if not EMAIL_REGEX.match(form['email']):
             is_valid = False
-            flash('Invalid email address', 'email')
+            flash('Invalid email address.', 'email')
         data = {'email': form['email']}
         user_in_db = User.get_by_email(data)
         if user_in_db:
@@ -108,5 +108,8 @@ class User:
             flash('Email is already in use. Try using it to log in.', 'email')
         if form['password'] != form['password_confirmation']:
             is_valid = False
-            flash('Passwords must match', 'password')
+            flash('Passwords must match.', 'password')
+        if len(form['password']) < 8:
+            is_valid = False
+            flash('Password must be at least 8 characters.', 'password')
         return is_valid
