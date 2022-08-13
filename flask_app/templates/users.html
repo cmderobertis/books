@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block title %} {{page_title}} {% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-9 col-md-8 col-sm-12">
+      <div class="card my-3">
+        <div class="card-header">
+          <h3 class="card-title text-center">{{ page_title }}</h3>
+        </div>
+        <div class="overflow-scroll">
+          <table class="table table-striped table-bordered table-hover mb-0">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Created At</th>
+              <th class="text-center">Actions</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.created_at}}</td>
+              <td class="d-flex justify-content-around">
+                <a href="/users/{{user.id}}">
+                  <i class="text-success fa fa-house"></i
+                ></a>
+                <a href="#">
+                  <i
+                    onclick="alert(`Change this to something witty.`)"
+                    class="text-danger fa fa-trash-can"
+                  ></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
